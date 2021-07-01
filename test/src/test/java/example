@@ -1,0 +1,7 @@
+---
+region: us-west-2
+metrics:
+  - aws_namespace: AWS/DynamoDB
+    aws_metric_name: ConsumedReadCapacityUnits
+    aws_dimensions: [production-authentication-manager-user: user_by_username]
+    aws_statistics: [Sum]

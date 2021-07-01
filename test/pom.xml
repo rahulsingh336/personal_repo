@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.test..java</groupId>
+    <artifactId>test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <name>examples</name>
+    <url>http://maven.apache.org</url>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>vmlens</id>
+            <url>http://vmlens.com/download</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.vmlens</groupId>
+            <artifactId>annotation</artifactId>
+            <version>1.0.2</version>
+            <scope>test</scope>
+        </dependency>
+
+
+<!--        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.5.2</version>
+        </dependency>
+
+    <!--    &lt;!&ndash; https://mvnrepository.com/artifact/javafx/javafx &ndash;&gt;
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+
+
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <includes>
+                        <include>none</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+
+
+
+            <plugin>
+                <groupId>com.vmlens</groupId>
+                <artifactId>interleave</artifactId>
+                <version>1.0.4</version>
+
+                <!-- start regression test -->
+
+                <configuration>
+
+                    <trimStackTrace>false</trimStackTrace>
+
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+
+
+                    <execution>
+                        <id>concurrentHashMap.TestUpdateWrong</id>
+                        <configuration>
+                            <includes>
+                                <include>com.vmlens.examples.concurrentHashMap.TestUpdateWrong</include>
+                            </includes>
+
+                        </configuration>
+                    </execution>
+
+
+                    <execution>
+                        <id>counter.TestCounterIncorrect</id>
+                        <configuration>
+                            <includes>
+                                <include>com.vmlens.examples.counter.TestCounterIncorrect</include>
+                            </includes>
+
+                        </configuration>
+                    </execution>
+
+
+                    <execution>
+                        <id>counter.TestCounterSynchronized</id>
+                        <configuration>
+                            <includes>
+                                <include>com.vmlens.examples.counter.TestCounterSynchronized</include>
+                            </includes>
+
+                        </configuration>
+                    </execution>
+
+
+
+
+
+
+
+                </executions>
+
+
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+
+</project>
